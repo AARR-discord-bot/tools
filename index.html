@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -55,6 +57,11 @@
         const button = document.getElementById('fullscreen-btn');
         const video = document.getElementById('bg-video');
 
+        // 自動でボタンをクリックする
+        window.addEventListener('load', function() {
+            button.click();
+        });
+
         button.addEventListener('click', function() {
             if (video.requestFullscreen) {
                 video.requestFullscreen();
@@ -73,4 +80,3 @@
     
 </body>
 </html>
-
