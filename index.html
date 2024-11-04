@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,7 +15,7 @@
             align-items: center;
             background: black;
         }
-        video {
+        #bg-video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -24,6 +23,17 @@
             min-height: 100%;
             width: auto;
             height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            display: none; /* 初期状態で非表示 */
+        }
+        #bg-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transform: translate(-50%, -50%);
             z-index: -1;
         }
@@ -44,6 +54,7 @@
 </head>
 <body>
 
+    <img id="bg-image" src="https://beiz.jp/images_P/tree-woods/tree-woods_00050.jpg" alt="Background Image">
     <video id="bg-video" autoplay muted loop>
         <source src="https://i.imgur.com/NbBGFcf.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -52,8 +63,15 @@
     <button id="fullscreen-btn">参加する</button>
 
     <script>
-        document.getElementById('fullscreen-btn').addEventListener('click', function() {
-            const video = document.getElementById('bg-video');
+        const video = document.getElementById('bg-video');
+        const image = document.getElementById('bg-image');
+        const button = document.getElementById('fullscreen-btn');
+
+        button.addEventListener('click', function() {
+            image.style.display = 'none'; // 画像を非表示
+            video.style.display = 'block'; // 動画を表示
+            video.play(); // 動画を再生
+
             if (video.requestFullscreen) {
                 video.requestFullscreen();
             } else if (video.webkitRequestFullscreen) { // Safari
@@ -61,6 +79,11 @@
             } else if (video.msRequestFullscreen) { // IE11
                 video.msRequestFullscreen();
             }
+        });
+
+        window.addEventListener('beforeunload', function (event) {
+            event.preventDefault();
+            event.returnValue = 'このページを離れようとしています。'; // 警告メッセージ
         });
     </script>
     
