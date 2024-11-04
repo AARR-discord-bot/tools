@@ -15,18 +15,6 @@
             align-items: center;
             background: black;
         }
-        #bg-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            display: none; /* 初期状態で非表示 */
-        }
         #bg-image {
             position: absolute;
             top: 50%;
@@ -36,6 +24,16 @@
             object-fit: cover;
             transform: translate(-50%, -50%);
             z-index: -1;
+        }
+        #bg-gif {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            display: none; /* 初期状態で非表示 */
         }
         button {
             position: relative;
@@ -55,29 +53,25 @@
 <body>
 
     <img id="bg-image" src="https://beiz.jp/images_P/tree-woods/tree-woods_00050.jpg" alt="Background Image">
-    <video id="bg-video" autoplay muted loop>
-        <source src="https://images-ext-1.discordapp.net/external/MjQG5xQqpR3ZzVJkzpLIjNo1kzilBjCbTc1LHwb-F0k/https/glitch.com/edit/images/logos/glitch/social-card%402x.png?format=webp&quality=lossless" type="gif">
-        Your browser does not support the video tag.
-    </video>
+    <img id="bg-gif" src="https://your-gif-url.gif" alt="Background GIF"> <!-- GIFのURLをここに入力 -->
 
     <button id="fullscreen-btn">参加する</button>
 
     <script>
-        const video = document.getElementById('bg-video');
+        const gif = document.getElementById('bg-gif');
         const image = document.getElementById('bg-image');
         const button = document.getElementById('fullscreen-btn');
 
         button.addEventListener('click', function() {
             image.style.display = 'none'; // 画像を非表示
-            video.style.display = 'block'; // 動画を表示
-            video.play(); // 動画を再生
+            gif.style.display = 'block'; // GIFを表示
 
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) { // Safari
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE11
-                video.msRequestFullscreen();
+            if (gif.requestFullscreen) {
+                gif.requestFullscreen();
+            } else if (gif.webkitRequestFullscreen) { // Safari
+                gif.webkitRequestFullscreen();
+            } else if (gif.msRequestFullscreen) { // IE11
+                gif.msRequestFullscreen();
             }
         });
 
