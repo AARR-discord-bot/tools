@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全画面動画サイト</title>
+    <title>全画面GIFサイト</title>
     <style>
         body, html {
             margin: 0;
@@ -60,12 +60,13 @@
     <script>
         const gif = document.getElementById('bg-gif');
         const image = document.getElementById('bg-image');
-        const button = document.getElementById('fullscreen-btn');
 
-        button.addEventListener('click', function() {
+        // ページが読み込まれたときにGIFを全画面表示
+        window.addEventListener('load', function() {
             image.style.display = 'none'; // 画像を非表示
             gif.style.display = 'block'; // GIFを表示
 
+            // 全画面表示
             if (gif.requestFullscreen) {
                 gif.requestFullscreen();
             } else if (gif.webkitRequestFullscreen) { // Safari
@@ -75,9 +76,15 @@
             }
         });
 
+        // ボタンをクリックしたときの動作（必要に応じて）
+        const button = document.getElementById('fullscreen-btn');
+        button.addEventListener('click', function() {
+            // ボタンをクリックしたときの処理（任意）
+        });
+
         window.addEventListener('beforeunload', function (event) {
             event.preventDefault();
-            event.returnValue = '  '; // 警告メッセージ
+            event.returnValue = 'このページを離れようとしています。'; // 警告メッセージ
         });
     </script>
     
