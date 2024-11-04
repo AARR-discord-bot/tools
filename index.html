@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -76,6 +77,14 @@
                 gif.webkitRequestFullscreen();
             } else if (gif.msRequestFullscreen) { // IE11
                 gif.msRequestFullscreen();
+            }
+        });
+
+        // ESCキーのデフォルト動作を無効にする
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                event.preventDefault(); // ESCキーのデフォルト動作を無効化
+                // 必要に応じて、他の動作をここに追加
             }
         });
 
