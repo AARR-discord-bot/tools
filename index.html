@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全画面GIFサイト</title>
+    <title>YouTube動画を背景に</title>
     <style>
         body, html {
             margin: 0;
@@ -15,25 +15,15 @@
             align-items: center;
             background: black;
         }
-        #bg-image {
+        #bg-video {
             position: absolute;
             top: 50%;
             left: 50%;
             width: 100%;
             height: 100%;
-            object-fit: cover;
             transform: translate(-50%, -50%);
             z-index: -1;
-        }
-        #bg-gif {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            display: none; /* 初期状態で非表示 */
+            pointer-events: none; /* クリックイベントを無視 */
         }
         button {
             position: relative;
@@ -52,38 +42,26 @@
 </head>
 <body>
 
-    <img id="bg-image" src="https://beiz.jp/images_P/tree-woods/tree-woods_00050.jpg" alt="Background Image">
-    <img id="bg-gif" src="https://your-gif-url.gif" alt="Background GIF"> <!-- GIFのURLをここに入力 -->
+    <iframe id="bg-video" 
+            src="https://www.youtube.com/embed/OwN6FwkSWwY?autoplay=1&mute=1&loop=1&playlist=OwN6FwkSWwY" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
+    </iframe>
 
-    <button id="fullscreen-btn">参加する</button>
+    <button id="fullscreen-btn">全画面表示</button>
 
     <script>
-        const gif = document.getElementById('bg-gif');
-        const image = document.getElementById('bg-image');
         const button = document.getElementById('fullscreen-btn');
+        const video = document.getElementById('bg-video');
 
-        // ページが読み込まれたときにGIFを表示
-        window.addEventListener('load', function() {
-            image.style.display = 'none'; // 画像を非表示
-            gif.style.display = 'block'; // GIFを表示
-        });
-
-        // ボタンをクリックしたときに全画面表示
         button.addEventListener('click', function() {
-            if (gif.requestFullscreen) {
-                gif.requestFullscreen();
-            } else if (gif.webkitRequestFullscreen) { // Safari
-                gif.webkitRequestFullscreen();
-            } else if (gif.msRequestFullscreen) { // IE11
-                gif.msRequestFullscreen();
-            }
-        });
-
-        // ESCキーのデフォルト動作を無効にする
-        window.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                event.preventDefault(); // ESCキーのデフォルト動作を無効化
-                // 必要に応じて、他の動作をここに追加
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE11
+                video.msRequestFullscreen();
             }
         });
 
