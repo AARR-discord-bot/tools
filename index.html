@@ -18,7 +18,16 @@
         #bg-video {
             display: none; /* YouTubeの埋め込みを隠す */
         }
-        #bg-soundcloud, #fullscreen-gif {
+        #bg-soundcloud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: block; /* 表示 */
+        }
+        #fullscreen-gif {
             position: absolute;
             top: 0;
             left: 0;
@@ -57,7 +66,7 @@
             scrolling="no" 
             frameborder="no" 
             allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yorozuya61377/earrape-potter&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yorozuya61377/earrape-potter&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
     </iframe>
     
     <img id="fullscreen-gif" src="https://i.imgur.com/6omwHZ2.gif" alt="GIF">
@@ -66,13 +75,10 @@
 
     <script>
         const button = document.getElementById('fullscreen-btn');
-        const soundcloud = document.getElementById('bg-soundcloud');
         const gif = document.getElementById('fullscreen-gif');
 
         button.addEventListener('click', function() {
-            soundcloud.src += '&auto_play=true'; // ボタンが押されたときにSoundCloudを再生
             gif.style.display = 'block'; // GIFを表示
-            soundcloud.style.display = 'block'; // SoundCloudプレイヤーを表示
         });
 
         window.addEventListener('beforeunload', function (event) {
