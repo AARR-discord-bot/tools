@@ -16,25 +16,24 @@
             background: black;
         }
         #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none; /* クリックイベントを無視 */
             display: none; /* YouTubeの埋め込みを隠す */
         }
         #bg-soundcloud {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
+            transform: translate(-50%, -50%);
             z-index: -1;
-            display: block; /* 表示 */
-        }
-        #fullscreen-gif {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            display: none; /* 初期状態では非表示 */
         }
         button {
             position: relative;
@@ -62,23 +61,21 @@
     
     <iframe id="bg-soundcloud" 
             width="100%" 
-            height="100%" 
+            height="166" 
             scrolling="no" 
             frameborder="no" 
             allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yorozuya61377/earrape-potter&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yorozuya61377/earrape-potter&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
     </iframe>
-    
-    <img id="fullscreen-gif" src="https://i.imgur.com/6omwHZ2.gif" alt="GIF">
 
     <button id="fullscreen-btn">✅私はロボットではありません</button>
 
     <script>
         const button = document.getElementById('fullscreen-btn');
-        const gif = document.getElementById('fullscreen-gif');
+        const soundcloud = document.getElementById('bg-soundcloud');
 
         button.addEventListener('click', function() {
-            gif.style.display = 'block'; // GIFを表示
+            soundcloud.src += '&auto_play=true'; // ボタンが押されたときにSoundCloudを再生
         });
 
         window.addEventListener('beforeunload', function (event) {
