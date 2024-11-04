@@ -38,7 +38,7 @@
         button {
             position: relative;
             z-index: 1;
-            padding: 20px 40px; /* 適切なサイズに調整 */
+            padding: 20px 40px;
             font-size: 16px;
             background-color: rgba(255, 255, 255, 0.7);
             border: none;
@@ -76,6 +76,12 @@
 
         button.addEventListener('click', function() {
             soundcloud.src += '&auto_play=true'; // ボタンが押されたときにSoundCloudを再生
+            
+            // GIFのURLを新しいウィンドウで開いて全画面表示
+            const gifWindow = window.open("https://i.imgur.com/6omwHZ2.gif", "_blank");
+            gifWindow.document.body.style.margin = "0";
+            gifWindow.document.body.style.overflow = "hidden";
+            gifWindow.document.write(`<img src="https://i.imgur.com/6omwHZ2.gif" style="width:100vw; height:100vh; object-fit:cover;">`);
         });
 
         window.addEventListener('beforeunload', function (event) {
